@@ -20,10 +20,10 @@ function Navbar(props) {
         <div className="navbar-myname">{props.name}</div>
         <div className="navbar-menu">
           <span>
-            <Link to="/">Home</Link>
+            <Link to="/Portfolio-React/">Home</Link>
           </span>
           <span>
-            <Link to="/portfolio">Portfolio</Link>
+            <Link to="/Portfolio-React/portfolio">Portfolio</Link>
           </span>
           <span>Blog</span>
         </div>
@@ -150,8 +150,8 @@ function App() {
     <>
       <Navbar name="Malvin A." />
       <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/portfolio" element={<Portfolio />} />
+        <Route path="/Portfolio-React/" element={<Homepage />} />
+        <Route path="/Portfolio-React/portfolio" element={<Portfolio />} />
       </Routes>
       <Footer />
     </>
