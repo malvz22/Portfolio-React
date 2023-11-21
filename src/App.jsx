@@ -1,3 +1,4 @@
+import { Routes, Route, Link } from "react-router-dom";
 import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
@@ -10,14 +11,20 @@ import project1 from "/project1.png";
 
 import "./style.css";
 
+//Components
+
 function Navbar(props) {
   return (
     <div className="navbar">
       <div className="navbar-contents">
         <div className="navbar-myname">{props.name}</div>
         <div className="navbar-menu">
-          <span>Home</span>
-          <span>Portfolio</span>
+          <span>
+            <Link to="/">Home</Link>
+          </span>
+          <span>
+            <Link to="/portfolio">Portfolio</Link>
+          </span>
           <span>Blog</span>
         </div>
       </div>
@@ -105,35 +112,48 @@ function Footer() {
   );
 }
 
+//Pages
+
+function Homepage() {
+  return (
+    <div className="container">
+      <Intro intro="Hi I'm Malvin, a programmer with some ability to love learning and working on teamwork." />
+      <Featured />
+    </div>
+  );
+}
+
+function Portfolio() {
+  return (
+    <div className="container">
+      <h2>All Projects</h2>
+      <div className="featured-works">
+        <Card image={project1} title="The Band Landingpage" alt="" />
+        <Card image={project1} title="WIP" alt="" />
+        <Card image={project1} title="WIP" alt="" />
+        <Card image={project1} title="WIP" alt="" />
+        <Card image={project1} title="WIP" alt="" />
+        <Card image={project1} title="WIP" alt="" />
+        <Card image={project1} title="WIP" alt="" />
+        <Card image={project1} title="WIP" alt="" />
+        <Card image={project1} title="WIP" alt="" />
+        <Card image={project1} title="WIP" alt="" />
+        <Card image={project1} title="WIP" alt="" />
+        <Card image={project1} title="WIP" alt="" />
+      </div>
+    </div>
+  );
+}
+
 function App() {
   return (
     <>
-      {/* <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p> */}
       <Navbar name="Malvin A." />
-      <div className="container">
-        <Intro intro="Hi I'm Malvin, a programmer with some ability to love learning and working on teamwork." />
-        <Featured />
-        <Footer />
-      </div>
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/portfolio" element={<Portfolio />} />
+      </Routes>
+      <Footer />
     </>
   );
 }
