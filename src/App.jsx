@@ -150,8 +150,8 @@ function App() {
     <>
       <Navbar name="Malvin A." />
       <Routes>
-        <Route path="/Portfolio-React/" element={<Homepage />} />
-        <Route path="/Portfolio-React/portfolio" element={<Portfolio />} />
+        <Route path="/" element={<Homepage />} />
+        <Route path="/portfolio" element={<Portfolio />} />
       </Routes>
       <Footer />
     </>
