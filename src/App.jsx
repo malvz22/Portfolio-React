@@ -1,7 +1,7 @@
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable react/prop-types */
 import { Routes, Route, Link } from "react-router-dom";
-import { useState } from "react";
 import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import { FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
 import displayPic from "/profilepic.png";
 import html5Logo from "/html-5.png";
