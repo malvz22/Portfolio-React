@@ -20,10 +20,10 @@ function Navbar(props) {
         <div className="navbar-myname">{props.name}</div>
         <div className="navbar-menu">
           <span>
-            <Link to="/Portfolio-React/">Home</Link>
+            <Link to="/">Home</Link>
           </span>
           <span>
-            <Link to="/Portfolio-React/portfolio">Portfolio</Link>
+            <Link to="/portfolio">Portfolio</Link>
           </span>
           <span>Blog</span>
         </div>
