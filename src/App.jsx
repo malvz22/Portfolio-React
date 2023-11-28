@@ -1,8 +1,10 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/prop-types */
+import { useState } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import reactLogo from "./assets/react.svg";
 import { FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { RxHamburgerMenu } from "react-icons/rx";
 import displayPic from "/profilepic.png";
 import html5Logo from "/html-5.png";
 import css3Logo from "/css-3.png";
@@ -21,39 +23,104 @@ import {
   Heading,
   Image,
   Text,
+  Flex,
+  Stack,
 } from "@chakra-ui/react";
 
 //Components
 
 function Navbar(props) {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
-    <div className="navbar">
-      <div className="navbar-contents">
-        <div className="navbar-myname">{props.name}</div>
-        <div className="navbar-menu">
-          <span>
+    <>
+      <Box
+        maxWidth={"100%"}
+        position={"sticky"}
+        top={0}
+        left={0}
+        background={"#272727"}
+      >
+        <Flex
+          maxW={"1140px"}
+          justifyContent={"space-between"}
+          margin={"auto"}
+          padding={"24px"}
+          flexDir={"row"}
+        >
+          <Text
+            fontFamily={`"Poppins", sans-serif`}
+            fontSize={"24px"}
+            fontWeight={700}
+            color={"white"}
+          >
+            {props.name}
+          </Text>
+          <HStack
+            color={"white"}
+            gap={"64px"}
+            display={["none", "none", "flex"]}
+          >
+            <Text
+              fontFamily={"`Inter`, sans-serif"}
+              fontWeight={600}
+              fontSize={"16px"}
+            >
+              <Link to="/">Home</Link>
+            </Text>
+            <Text
+              fontFamily={"`Inter`, sans-serif"}
+              fontWeight={600}
+              fontSize={"16px"}
+            >
+              <Link to="/portfolio">Portfolio</Link>
+            </Text>
+          </HStack>
+          <Box
+            cursor={"pointer"}
+            alignItems={"center"}
+            display={["flex", "flex", "none"]}
+            onClick={() => {
+              setMenuOpen(!menuOpen);
+            }}
+          >
+            <RxHamburgerMenu size={32} color="white" />
+          </Box>
+        </Flex>
+        <Stack
+          gap={"24px"}
+          padding={"12px 24px"}
+          display={menuOpen ? "flex" : "none"}
+        >
+          <Text fontWeight={600} color={"white"}>
             <Link to="/">Home</Link>
-          </span>
-          <span>
+          </Text>
+          <Text fontWeight={600} color={"white"}>
             <Link to="/portfolio">Portfolio</Link>
-          </span>
-          <span>Blog</span>
-        </div>
-      </div>
-      <Center>
-        <Divider height={"1px"} maxWidth={"1140px"}></Divider>
-      </Center>
-    </div>
+          </Text>
+        </Stack>
+
+        <Center>
+          <Divider
+            color={"#4D4D4D"}
+            height={"1px"}
+            maxWidth={"1140px"}
+          ></Divider>
+        </Center>
+      </Box>
+    </>
   );
 }
+
+//200px 1fr 250px
 
 function Intro() {
   return (
     <Grid
-      templateColumns="200px 1fr 250px"
+      templateColumns={["1fr", "1fr", "200px 1fr 250px"]}
       templateRows="auto"
       gap={6}
-      mt={"48px"}
+      my={"48px"}
     >
       <GridItem display={[null, null, "none"]} colSpan={3}>
         <Box
@@ -74,7 +141,7 @@ function Intro() {
         </Box>
       </GridItem>
       <GridItem
-        display={["block", "block", "none"]}
+        display={["inline", "inline", "none"]}
         colSpan={[3, 3, 1, 1, 1, 1]}
       >
         <HStack justifyContent={["center", "center", "start"]}>
@@ -86,10 +153,11 @@ function Intro() {
       <GridItem colSpan={3}>
         <Heading
           as={"h2"}
-          size={"2xl"}
+          size={["xl", "xl", "xl", "2xl"]}
           className="mainIntro"
           py={"0px"}
           my={"12px"}
+          textAlign={["center", "center", "left"]}
         >
           Hi I'm Malvin, a programmer with some ability to love learning and
           working on teamwork.
@@ -169,10 +237,10 @@ function Intro() {
       </GridItem>
       <GridItem colSpan={3}>
         <HStack justifyContent={"center"}>
-          <Image src={html5Logo} boxSize={"100px"}></Image>
-          <Image src={css3Logo} boxSize={"100px"}></Image>
-          <Image src={jsLogo} boxSize={"100px"}></Image>
-          <Image src={reactLogo} boxSize={"100px"}></Image>
+          <Image src={html5Logo} boxSize={["60px", "60px", "100px"]}></Image>
+          <Image src={css3Logo} boxSize={["60px", "60px", "100px"]}></Image>
+          <Image src={jsLogo} boxSize={["60px", "60px", "100px"]}></Image>
+          <Image src={reactLogo} boxSize={["60px", "60px", "100px"]}></Image>
         </HStack>
       </GridItem>
     </Grid>
@@ -197,7 +265,9 @@ function Featured() {
       mb={"24px"}
       maxW={["400px", "400px", "740px", "1110px"]}
     >
-      <h3>Featured Projects</h3>
+      <Heading as={"h3"} textAlign={["center", "center", "left"]}>
+        Featured Projects
+      </Heading>
       <Grid
         gridTemplateColumns={"auto auto auto auto auto auto"}
         gap={"12px"}
@@ -287,7 +357,7 @@ function App() {
   return (
     <>
       <Navbar name="Malvin A." />
-      <Container maxW={"1140px"}>
+      <Container maxW={["1140px"]}>
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/portfolio" element={<Portfolio />} />
